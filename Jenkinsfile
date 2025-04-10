@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.10'  // or any version you prefer
+        }
+    }
 
     stages {
         stage('Checkout Code') {
@@ -10,8 +14,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'python3 -m pip install -r requirements.txt'
-
+                sh 'pip install -r requirements.txt'
             }
         }
 
@@ -22,3 +25,4 @@ pipeline {
         }
     }
 }
+
