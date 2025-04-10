@@ -1,14 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.9'
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/harshaa2312/flask-docker-demo.git'
+                git branch: 'main', url: https://github.com/harshaa2312/flask-docker-demo.git
             }
         }
 
@@ -20,7 +16,7 @@ pipeline {
 
         stage('Run Flask App') {
             steps {
-                sh 'python app.py'
+                sh 'nohup python app.py &'
             }
         }
     }
