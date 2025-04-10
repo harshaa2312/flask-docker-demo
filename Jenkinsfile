@@ -1,14 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'  // or any version you prefer
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/harshaa2312/flask-docker-demo.git'
+                git branch: 'main', url: 'https://github.com/yourusername/flask-app.git'
             }
         }
 
@@ -25,4 +21,3 @@ pipeline {
         }
     }
 }
-
