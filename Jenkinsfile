@@ -8,15 +8,24 @@ pipeline {
             }
         }
 
+        stage('Install Python') {
+            steps {
+                sh '''
+                    apt update
+                    apt install -y python3 python3-pip
+                '''
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'python3 -m pip install -r requirements.txt'
             }
         }
 
         stage('Run Flask App') {
             steps {
-                sh 'nohup python app.py &'
+                sh 'python3 app.py'
             }
         }
     }
