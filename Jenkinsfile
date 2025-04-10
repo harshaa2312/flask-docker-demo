@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout Code') {
@@ -12,15 +8,15 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'docker build -t flask-app .'
             }
         }
 
-        stage('Run Flask App') {
+        stage('Run Flask Container') {
             steps {
-                sh 'python app.py'
+                sh 'docker run -d -p 5000:5000 flask-app'
             }
         }
     }
