@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.10'  // Uses official Python image with pip preinstalled
+            image 'python:3.10'
         }
     }
 
