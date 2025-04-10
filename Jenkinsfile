@@ -19,13 +19,14 @@ pipeline {
             }
         }
 
-        stage('Run Flask App') {
-            steps {
-                sh '''
-                    . venv/bin/activate
-                    python app.py
-                '''
-            }
-        }
+     stage('Run Flask App') {
+    steps {
+        sh '''
+            . venv/bin/activate
+            nohup python app.py > flask.log 2>&1 &
+        '''
+    }
+}
+
     }
 }
